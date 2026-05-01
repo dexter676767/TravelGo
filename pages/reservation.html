@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pesan tempat di restoran kuliner Jakarta Selatan dengan mudah. Pilih tanggal, waktu, dan jumlah tamu.">
+  <meta name="keywords" content="reservasi, restoran, booking, kuliner, Jakarta Selatan">
+  <title>Reservasi Restoran - Kuliner Jakarta Selatan</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .reservation-container {
+      display: grid;
+      grid-template-columns: 1fr 350px;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .reservation-form {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .summary-sidebar {
+      background: linear-gradient(135deg, #ff6b35, #f7931e);
+      color: white;
+      padding: 25px;
+      border-radius: 12px;
+      height: fit-content;
+      position: sticky;
+      top: 100px;
+    }
+
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .summary-item:last-child {
+      border-bottom: none;
+    }
+
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 0;
+      margin-top: 15px;
+      border-top: 2px solid rgba(255,255,255,0.3);
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .reservation-container {
+        grid-template-columns: 1fr;
+      }
+
+      .summary-sidebar {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <span class="logo-icon">🍽️</span>
+        <span>TravelGo Kuliner</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="../index.html">Beranda</a></li>
+          <li><a href="../index.html#restaurants">Restoran</a></li>
+          <li><a href="#">Tentang</a></li>
+          <li><a href="#">Kontak</a></li>
+        </ul>
+      </nav>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section style="background: linear-gradient(135deg, #ff6b35, #f7931e); color: white; padding: 60px 20px; text-align: center;">
+    <div class="container">
+      <h1 style="font-size: 42px; margin-bottom: 10px;">📅 Reservasi Restoran</h1>
+      <p style="font-size: 18px; opacity: 0.9;">Pesan tempat Anda sekarang dan nikmati pengalaman kuliner terbaik</p>
+    </div>
+  </section>
+
+  <!-- RESERVATION SECTION -->
+  <section style="padding: 40px 20px;">
+    <div class="container">
+      <div class="reservation-container">
+        <!-- RESERVATION FORM -->
+        <div class="reservation-form">
+          <h2 style="font-size: 28px; margin-bottom: 30px; border-bottom: 0;">Formulir Reservasi</h2>
+
+          <form id="reservationFormPage">
+            <!-- STEP 1: RESTAURANT SELECTION -->
+            <div class="form-group-full">
+              <label>🍽️ Pilih Restoran</label>
+              <select id="restaurantSelect" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px;">
+                <option value="">-- Pilih Restoran --</option>
+                <option value="Restoran Tradisional Sunda">Restoran Tradisional Sunda</option>
+                <option value="Modern Fusion Kitchen">Modern Fusion Kitchen</option>
+                <option value="Seafood Paradise">Seafood Paradise</option>
+                <option value="Green Garden Vegetarian">Green Garden Vegetarian</option>
+                <option value="Sweet Dreams Dessert Cafe">Sweet Dreams Dessert Cafe</option>
+                <option value="Premium Steak House">Premium Steak House</option>
+              </select>
+            </div>
+
+            <!-- STEP 2: PERSONAL INFORMATION -->
+            <div style="margin-top: 30px; padding-top: 30px; border-top: 2px solid #ddd;">
+              <h3 style="margin-bottom: 20px;">👤 Informasi Pribadi</h3>
+
+              <div class="form-group-full">
+                <label>Nama Lengkap</label>
+                <input type="text" id="guestNameRes" placeholder="Masukkan nama Anda" required>
+              </div>
+
+              <div class="form-group-full">
+                <label>Email</label>
+                <input type="email" id="guestEmailRes" placeholder="example@email.com" required>
+              </div>
+
+              <div class="form-group-full">
+                <label>Nomor Telepon</label>
+                <input type="tel" id="guestPhoneRes" placeholder="+62 8xx-xxxx-xxxx" required>
+              </div>
+            </div>
+
+            <!-- STEP 3: RESERVATION DETAILS -->
+            <div style="margin-top: 30px; padding-top: 30px; border-top: 2px solid #ddd;">
+              <h3 style="margin-bottom: 20px;">📅 Detail Reservasi</h3>
+
+              <div class="form-group-full">
+                <label>Tanggal</label>
+                <input type="date" id="reservationDateRes" required>
+              </div>
+
+              <div class="form-group-full">
+                <label>Waktu</label>
+                <input type="time" id="reservationTimeRes" required>
+              </div>
+
+              <div class="form-group-full">
+                <label>Jumlah Tamu</label>
+                <select id="guestCountRes" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px;">
+                  <option value="">-- Pilih Jumlah Tamu --</option>
+                  <option value="1">1 Orang</option>
+                  <option value="2">2 Orang</option>
+                  <option value="3">3 Orang</option>
+                  <option value="4">4 Orang</option>
+                  <option value="5">5 Orang</option>
+                  <option value="6">6 Orang</option>
+                  <option value="7">7 Orang</option>
+                  <option value="8">8 Orang</option>
+                  <option value="9">9 Orang</option>
+                  <option value="10">10 Orang</option>
+                  <option value="11">Lebih dari 10 Orang</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- STEP 4: SPECIAL REQUESTS -->
+            <div style="margin-top: 30px; padding-top: 30px; border-top: 2px solid #ddd;">
+              <h3 style="margin-bottom: 20px;">💬 Permintaan Khusus</h3>
+
+              <div class="form-group-full">
+                <label>Catatan atau Permintaan Spesial</label>
+                <textarea id="specialRequestsRes" placeholder="Contoh: Alergi, preferensi tempat duduk, dll..." style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; min-height: 100px;"></textarea>
+              </div>
+            </div>
+
+            <!-- SUBMIT BUTTON -->
+            <div style="margin-top: 30px;">
+              <button type="submit" class="btn btn-primary btn-block" style="padding: 15px; font-size: 16px;">
+                ✅ Konfirmasi Reservasi
+              </button>
+              <p style="text-align: center; color: #999; font-size: 12px; margin-top: 15px;">
+                * Anda akan menerima email konfirmasi setelah menyetujui reservasi
+              </p>
+            </div>
+          </form>
+        </div>
+
+        <!-- SUMMARY SIDEBAR -->
+        <div class="summary-sidebar">
+          <h3 style="margin-bottom: 20px; font-size: 20px;">📊 Ringkasan Reservasi</h3>
+
+          <div class="summary-item">
+            <span>Restoran:</span>
+            <span id="summaryRestaurant" style="text-align: right;">-</span>
+          </div>
+
+          <div class="summary-item">
+            <span>Tanggal:</span>
+            <span id="summaryDate" style="text-align: right;">-</span>
+          </div>
+
+          <div class="summary-item">
+            <span>Waktu:</span>
+            <span id="summaryTime" style="text-align: right;">-</span>
+          </div>
+
+          <div class="summary-item">
+            <span>Jumlah Tamu:</span>
+            <span id="summaryGuests" style="text-align: right;">-</span>
+          </div>
+
+          <div class="summary-item">
+            <span>Nama:</span>
+            <span id="summaryName" style="text-align: right;">-</span>
+          </div>
+
+          <div class="summary-item">
+            <span>Email:</span>
+            <span id="summaryEmail" style="text-align: right; font-size: 12px;">-</span>
+          </div>
+
+          <div class="summary-total">
+            <span>Status:</span>
+            <span style="color: #ffd700;">⏳ Pending</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFORMATION SECTION -->
+  <section style="background-color: #f9f9f9; padding: 40px 20px;">
+    <div class="container">
+      <h2 style="font-size: 28px; margin-bottom: 30px; border-bottom: 0;">ℹ️ Kebijakan & Informasi Reservasi</h2>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+        <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <h3 style="margin-bottom: 15px; color: #ff6b35;">📋 Syarat & Ketentuan</h3>
+          <ul style="color: #666; font-size: 14px; line-height: 1.8;">
+            <li>✓ Reservasi harus dilakukan minimal 1 jam sebelumnya</li>
+            <li>✓ Pembatalan gratis hingga 30 menit sebelum waktu reservasi</li>
+            <li>✓ Jika terlambat 30 menit, meja akan diberikan kepada tamu lain</li>
+          </ul>
+        </div>
+
+        <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <h3 style="margin-bottom: 15px; color: #ff6b35;">💳 Metode Pembayaran</h3>
+          <ul style="color: #666; font-size: 14px; line-height: 1.8;">
+            <li>✓ Tunai di tempat</li>
+            <li>✓ Transfer Bank</li>
+            <li>✓ E-wallet (GCash, OVO, DANA)</li>
+            <li>✓ Kartu Kredit</li>
+          </ul>
+        </div>
+
+        <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <h3 style="margin-bottom: 15px; color: #ff6b35;">🎯 Panduan Reservasi</h3>
+          <ul style="color: #666; font-size: 14px; line-height: 1.8;">
+            <li>✓ Isi formulir dengan data yang benar</li>
+            <li>✓ Verifikasi email konfirmasi Anda</li>
+            <li>✓ Tiba 10 menit lebih awal</li>
+            <li>✓ Nikmati pengalaman kuliner terbaik!</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Tentang Kami</h3>
+        <p>TravelGo Kuliner adalah platform informasi kuliner terpercaya yang menyediakan informasi lengkap tentang restoran dan tempat makan terbaik di Jakarta Selatan.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Tautan Cepat</h3>
+        <ul>
+          <li><a href="../index.html">Beranda</a></li>
+          <li><a href="../index.html#restaurants">Restoran</a></li>
+          <li><a href="#">Tentang</a></li>
+          <li><a href="#">Kontak</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Ikuti Kami</h3>
+        <div class="social-links">
+          <a href="#" title="Facebook">f</a>
+          <a href="#" title="Instagram">📷</a>
+          <a href="#" title="Twitter">𝕏</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 TravelGo Kuliner. Semua hak dilindungi.</p>
+    </div>
+  </footer>
+
+  <script src="../js/script.js"></script>
+  <script>
+    // Live summary update
+    const form = document.getElementById('reservationFormPage');
+    const formInputs = form.querySelectorAll('input, select, textarea');
+
+    formInputs.forEach(input => {
+      input.addEventListener('change', updateSummary);
+      input.addEventListener('input', updateSummary);
+    });
+
+    function updateSummary() {
+      document.getElementById('summaryRestaurant').textContent = 
+        document.getElementById('restaurantSelect').value || '-';
+      document.getElementById('summaryName').textContent = 
+        document.getElementById('guestNameRes').value || '-';
+      document.getElementById('summaryEmail').textContent = 
+        document.getElementById('guestEmailRes').value || '-';
+      document.getElementById('summaryDate').textContent = 
+        document.getElementById('reservationDateRes').value || '-';
+      document.getElementById('summaryTime').textContent = 
+        document.getElementById('reservationTimeRes').value || '-';
+      document.getElementById('summaryGuests').textContent = 
+        document.getElementById('guestCountRes').value || '-';
+    }
+
+    // Form submission
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const restaurant = document.getElementById('restaurantSelect').value;
+      const name = document.getElementById('guestNameRes').value;
+      const email = document.getElementById('guestEmailRes').value;
+      const phone = document.getElementById('guestPhoneRes').value;
+      const date = document.getElementById('reservationDateRes').value;
+      const time = document.getElementById('reservationTimeRes').value;
+      const guests = document.getElementById('guestCountRes').value;
+      const requests = document.getElementById('specialRequestsRes').value;
+
+      console.log('✅ Reservasi berhasil!');
+      console.log(`   Restoran: ${restaurant}`);
+      console.log(`   Nama: ${name}`);
+      console.log(`   Email: ${email}`);
+      console.log(`   Telepon: ${phone}`);
+      console.log(`   Tanggal: ${date}`);
+      console.log(`   Waktu: ${time}`);
+      console.log(`   Jumlah Tamu: ${guests}`);
+      console.log(`   Permintaan Khusus: ${requests || 'Tidak ada'}`);
+
+      alert(`✅ Reservasi Berhasil!\n\nRestoran: ${restaurant}\nTanggal: ${date}\nWaktu: ${time}\nJumlah Tamu: ${guests} orang\n\nKonfirmasi telah dikirim ke ${email}\n\nTerima kasih!`);
+
+      form.reset();
+      document.querySelectorAll('.summary-item span:last-child').forEach(el => {
+        if (el.textContent !== '⏳ Pending') el.textContent = '-';
+      });
+    });
+  </script>
+</body>
+</html>
