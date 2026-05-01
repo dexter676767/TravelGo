@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lihat detail lengkap restoran kuliner Jakarta Selatan - Menu, harga, fasilitas, dan lokasi.">
+  <meta name="keywords" content="restoran, kuliner, Jakarta Selatan, menu, reservasi">
+  <title>Detail Restoran - Kuliner Jakarta Selatan</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <span class="logo-icon">🍽️</span>
+        <span>TravelGo Kuliner</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="../index.html">Beranda</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#fasilitas">Fasilitas</a></li>
+          <li><a href="#galeri">Galeri</a></li>
+          <li><a href="#ulasan">Ulasan</a></li>
+        </ul>
+      </nav>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- RESTAURANT HEADER -->
+  <section class="restaurant-header-section" style="background: linear-gradient(135deg, #ff6b35, #f7931e); color: white; padding: 40px 20px;">
+    <div class="container">
+      <div style="display: flex; align-items: center; gap: 30px; flex-wrap: wrap;">
+        <div style="font-size: 100px;">🍲</div>
+        <div style="flex: 1;">
+          <h1 id="restaurantName" style="font-size: 36px; margin-bottom: 10px;">Restoran Tradisional Sunda</h1>
+          <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 15px;">
+            <div>
+              <strong>⭐ Rating:</strong> <span id="restaurantRating">4.8/5</span>
+            </div>
+            <div>
+              <strong>📍 Lokasi:</strong> <span id="restaurantLocation">Senayan, Jakarta Selatan</span>
+            </div>
+            <div>
+              <strong>💰 Harga:</strong> <span id="restaurantPrice">Rp 50,000 - Rp 150,000</span>
+            </div>
+          </div>
+          <div style="display: flex; gap: 15px;">
+            <button class="btn btn-light" onclick="callRestaurant()">📞 Telepon</button>
+            <button class="btn btn-light" onclick="openReservationForm()">📅 Reservasi</button>
+            <button class="btn btn-light" onclick="shareRestaurant()">📤 Bagikan</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TABS SECTION -->
+  <section style="padding: 40px 20px;">
+    <div class="container">
+      <!-- TAB BUTTONS -->
+      <div style="display: flex; gap: 10px; border-bottom: 2px solid #ddd; margin-bottom: 30px; overflow-x: auto;">
+        <button class="tab-btn active" onclick="switchTab('menu')" style="padding: 15px 20px; border: none; background: none; cursor: pointer; font-size: 16px; font-weight: 600; border-bottom: 3px solid #ff6b35; color: #ff6b35;">🍽️ Menu</button>
+        <button class="tab-btn" onclick="switchTab('fasilitas')" style="padding: 15px 20px; border: none; background: none; cursor: pointer; font-size: 16px; font-weight: 600; border-bottom: 3px solid transparent; color: #999;">🏨 Fasilitas</button>
+        <button class="tab-btn" onclick="switchTab('galeri')" style="padding: 15px 20px; border: none; background: none; cursor: pointer; font-size: 16px; font-weight: 600; border-bottom: 3px solid transparent; color: #999;">📸 Galeri</button>
+        <button class="tab-btn" onclick="switchTab('ulasan')" style="padding: 15px 20px; border: none; background: none; cursor: pointer; font-size: 16px; font-weight: 600; border-bottom: 3px solid transparent; color: #999;">⭐ Ulasan</button>
+      </div>
+
+      <!-- TAB CONTENT: MENU -->
+      <div id="menu-tab" class="tab-content">
+        <h2 style="font-size: 28px; margin-bottom: 30px; border-bottom: 0;">📋 Menu Restoran</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+          <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <h3 style="margin-bottom: 10px;">🍲 Soto Ayam Spesial</h3>
+            <p style="color: #666; margin-bottom: 10px;">Daging ayam empuk dalam kuah kuning yang hangat dan lezat</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 18px; font-weight: bold; color: #ff6b35;">Rp 35,000</span>
+              <button class="btn btn-small" style="padding: 8px 15px; font-size: 12px;">Pesan</button>
+            </div>
+          </div>
+
+          <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <h3 style="margin-bottom: 10px;">🥘 Nasi Kuning Lengkap</h3>
+            <p style="color: #666; margin-bottom: 10px;">Nasi kuning dengan lauk pauk yang kaya dan nikmat</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 18px; font-weight: bold; color: #ff6b35;">Rp 45,000</span>
+              <button class="btn btn-small" style="padding: 8px 15px; font-size: 12px;">Pesan</button>
+            </div>
+          </div>
+
+          <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <h3 style="margin-bottom: 10px;">🍗 Ayam Goreng Kriuk</h3>
+            <p style="color: #666; margin-bottom: 10px;">Ayam goreng dengan tepung bumbu yang renyah sempurna</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 18px; font-weight: bold; color: #ff6b35;">Rp 55,000</span>
+              <button class="btn btn-small" style="padding: 8px 15px; font-size: 12px;">Pesan</button>
+            </div>
+          </div>
+
+          <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <h3 style="margin-bottom: 10px;">🥗 Gado-gado Tradisional</h3>
+            <p style="color: #666; margin-bottom: 10px;">Sayuran segar dengan saus kacang yang gurih</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 18px; font-weight: bold; color: #ff6b35;">Rp 28,000</span>
+              <button class="btn btn-small" style="padding: 8px 15px; font-size: 12px;">Pesan</button>
+            </div>
+          </div>
+
+          <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <h3 style="margin-bottom: 10px;">🍵 Es Cendol Segar</h3>
+            <p style="color: #666; margin-bottom: 10px;">Minuman tradisional yang menyegarkan dan manis</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 18px; font-weight: bold; color: #ff6b35;">Rp 15,000</span>
+              <button class="btn btn-small" style="padding: 8px 15px; font-size: 12px;">Pesan</button>
+            </div>
+          </div>
+
+          <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <h3 style="margin-bottom: 10px;">🍮 Dessert Spesial</h3>
+            <p style="color: #666; margin-bottom: 10px;">Pudding tradisional dengan kelapa dan gula aren</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 18px; font-weight: bold; color: #ff6b35;">Rp 18,000</span>
+              <button class="btn btn-small" style="padding: 8px 15px; font-size: 12px;">Pesan</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB CONTENT: FASILITAS -->
+      <div id="fasilitas-tab" class="tab-content hidden">
+        <h2 style="font-size: 28px; margin-bottom: 30px; border-bottom: 0;">🏨 Fasilitas Restoran</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+          <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-align: center;">
+            <div style="font-size: 48px; margin-bottom: 10px;">🪑</div>
+            <h3>Ruang Makan Luas</h3>
+            <p style="color: #666; font-size: 14px;">Kapasitas hingga 100 orang dengan kenyamanan maksimal</p>
+          </div>
+
+          <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-align: center;">
+            <div style="font-size: 48px; margin-bottom: 10px;">🚗</div>
+            <h3>Parkir Gratis</h3>
+            <p style="color: #666; font-size: 14px;">Area parkir yang luas dan aman untuk kendaraan Anda</p>
+          </div>
+
+          <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-align: center;">
+            <div style="font-size: 48px; margin-bottom: 10px;">📱</div>
+            <h3>WiFi Gratis</h3>
+            <p style="color: #666; font-size: 14px;">Koneksi internet berkecepatan tinggi untuk semua tamu</p>
+          </div>
+
+          <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-align: center;">
+            <div style="font-size: 48px; margin-bottom: 10px;">♿</div>
+            <h3>Akses Difabel</h3>
+            <p style="color: #666; font-size: 14px;">Fasilitas lengkap untuk tamu dengan kebutuhan khusus</p>
+          </div>
+
+          <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-align: center;">
+            <div style="font-size: 48px; margin-bottom: 10px;">🎉</div>
+            <h3>Ruang Acara</h3>
+            <p style="color: #666; font-size: 14px;">Ruang khusus untuk acara private dan pesta</p>
+          </div>
+
+          <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-align: center;">
+            <div style="font-size: 48px; margin-bottom: 10px;">💳</div>
+            <h3>Berbagai Metode Pembayaran</h3>
+            <p style="color: #666; font-size: 14px;">Tunai, transfer, dan e-wallet diterima dengan mudah</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB CONTENT: GALERI -->
+      <div id="galeri-tab" class="tab-content hidden">
+        <h2 style="font-size: 28px; margin-bottom: 30px; border-bottom: 0;">📸 Galeri Restoran</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+          <div style="background: linear-gradient(135deg, #ff6b35, #f7931e); height: 250px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 80px;">
+            🍲
+          </div>
+          <div style="background: linear-gradient(135deg, #f7931e, #ff6b35); height: 250px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 80px;">
+            🍗
+          </div>
+          <div style="background: linear-gradient(135deg, #ff6b35, #f7931e); height: 250px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 80px;">
+            🥘
+          </div>
+          <div style="background: linear-gradient(135deg, #f7931e, #ff6b35); height: 250px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 80px;">
+            🪑
+          </div>
+          <div style="background: linear-gradient(135deg, #ff6b35, #f7931e); height: 250px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 80px;">
+            👨‍🍳
+          </div>
+          <div style="background: linear-gradient(135deg, #f7931e, #ff6b35); height: 250px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 80px;">
+            🍽️
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB CONTENT: ULASAN -->
+      <div id="ulasan-tab" class="tab-content hidden">
+        <h2 style="font-size: 28px; margin-bottom: 30px; border-bottom: 0;">⭐ Ulasan Pelanggan</h2>
+        
+        <!-- REVIEW FORM -->
+        <div style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 30px;">
+          <h3 style="margin-bottom: 20px;">✍️ Tulis Ulasan Anda</h3>
+          <form id="reviewFormDetail">
+            <div style="margin-bottom: 15px;">
+              <label style="display: block; font-weight: 600; margin-bottom: 8px;">Nama Anda</label>
+              <input type="text" placeholder="Masukkan nama Anda" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+            </div>
+            <div style="margin-bottom: 15px;">
+              <label style="display: block; font-weight: 600; margin-bottom: 8px;">Rating</label>
+              <select required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+                <option value="">-- Pilih Rating --</option>
+                <option value="5">⭐⭐⭐⭐⭐ Sangat Memuaskan</option>
+                <option value="4">⭐⭐⭐⭐ Memuaskan</option>
+                <option value="3">⭐⭐⭐ Cukup Memuaskan</option>
+                <option value="2">⭐⭐ Kurang Memuaskan</option>
+                <option value="1">⭐ Tidak Memuaskan</option>
+              </select>
+            </div>
+            <div style="margin-bottom: 15px;">
+              <label style="display: block; font-weight: 600; margin-bottom: 8px;">Komentar Anda</label>
+              <textarea placeholder="Bagikan pengalaman Anda di restoran ini..." required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; min-height: 120px;"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">📤 Kirim Ulasan</button>
+          </form>
+        </div>
+
+        <!-- REVIEWS LIST -->
+        <div style="display: flex; flex-direction: column; gap: 15px;">
+          <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+              <div>
+                <h4 style="margin-bottom: 5px;">Budi Santoso</h4>
+                <div style="color: #f39c12;">⭐⭐⭐⭐⭐</div>
+              </div>
+              <span style="color: #999; font-size: 14px;">2 minggu lalu</span>
+            </div>
+            <p style="color: #666; line-height: 1.6;">Makanan sangat lezat dan pelayanan ramah. Sudah datang berkali-kali dan selalu puas. Harganya juga terjangkau untuk kualitas yang ditawarkan.</p>
+          </div>
+
+          <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+              <div>
+                <h4 style="margin-bottom: 5px;">Siti Nurhaliza</h4>
+                <div style="color: #f39c12;">⭐⭐⭐⭐</div>
+              </div>
+              <span style="color: #999; font-size: 14px;">1 bulan lalu</span>
+            </div>
+            <p style="color: #666; line-height: 1.6;">Tempat yang nyaman dan bersih. Menu favorit saya adalah Soto Ayamnya, enak sekali. Satu-satunya kekurangan adalah kadang ramai jadi agak lama menunggu.</p>
+          </div>
+
+          <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+              <div>
+                <h4 style="margin-bottom: 5px;">Ahmad Pratama</h4>
+                <div style="color: #f39c12;">⭐⭐⭐⭐⭐</div>
+              </div>
+              <span style="color: #999; font-size: 14px;">1 bulan lalu</span>
+            </div>
+            <p style="color: #666; line-height: 1.6;">Restoran terbaik untuk makan kuliner tradisional Sunda. Penyajian menarik dan rasa yang autentik. Pasti akan balik lagi!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFORMATION SECTION -->
+  <section style="background-color: #f9f9f9; padding: 40px 20px;">
+    <div class="container">
+      <h2 style="font-size: 28px; margin-bottom: 30px; border-bottom: 0;">ℹ️ Informasi Restoran</h2>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+        <div>
+          <h3 style="margin-bottom: 15px; color: #ff6b35;">📍 Lokasi</h3>
+          <p style="color: #666; line-height: 1.8;">
+            Jl. Senayan No. 123<br>
+            Jakarta Selatan 12950<br>
+            Indonesia
+          </p>
+        </div>
+
+        <div>
+          <h3 style="margin-bottom: 15px; color: #ff6b35;">📞 Kontak</h3>
+          <p style="color: #666; line-height: 1.8;">
+            Telepon: +62 21-7218-0001<br>
+            WhatsApp: +62 812-3456-7890<br>
+            Email: info@restoran.com
+          </p>
+        </div>
+
+        <div>
+          <h3 style="margin-bottom: 15px; color: #ff6b35;">🕐 Jam Operasional</h3>
+          <p style="color: #666; line-height: 1.8;">
+            Senin - Jumat: 10:00 - 22:00<br>
+            Sabtu: 09:00 - 23:00<br>
+            Minggu: 10:00 - 22:00
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Tentang Kami</h3>
+        <p>TravelGo Kuliner adalah platform informasi kuliner terpercaya yang menyediakan informasi lengkap tentang restoran dan tempat makan terbaik di Jakarta Selatan.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Tautan Cepat</h3>
+        <ul>
+          <li><a href="../index.html">Beranda</a></li>
+          <li><a href="../index.html#restaurants">Restoran</a></li>
+          <li><a href="#">Tentang</a></li>
+          <li><a href="#">Kontak</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Ikuti Kami</h3>
+        <div class="social-links">
+          <a href="#" title="Facebook">f</a>
+          <a href="#" title="Instagram">📷</a>
+          <a href="#" title="Twitter">𝕏</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 TravelGo Kuliner. Semua hak dilindungi.</p>
+    </div>
+  </footer>
+
+  <script src="../js/script.js"></script>
+  <script>
+    // Tab switching functionality
+    function switchTab(tabName) {
+      // Hide all tabs
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.add('hidden');
+      });
+
+      // Remove active state from all buttons
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.style.color = '#999';
+        btn.style.borderBottomColor = 'transparent';
+      });
+
+      // Show selected tab
+      document.getElementById(tabName + '-tab').classList.remove('hidden');
+
+      // Add active state to clicked button
+      event.target.style.color = '#ff6b35';
+      event.target.style.borderBottomColor = '#ff6b35';
+    }
+
+    // Functions
+    function callRestaurant() {
+      alert('Menghubungi restoran...\n+62 21-7218-0001');
+    }
+
+    function openReservationForm() {
+      alert('Membuka formulir reservasi...');
+    }
+
+    function shareRestaurant() {
+      alert('Membagikan restoran ini...');
+    }
+  </script>
+</body>
+</html>
