@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover the latest culinary highlights in South Jakarta. Find menus, prices, facilities, ratings, and make reservations at your favorite restaurants.">
+    <meta name="keywords" content="South Jakarta, culinary, restaurants, food, menus, prices, reservations, ratings">
+    <meta name="author" content="South Jakarta Culinary Guide">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="South Jakarta Culinary Guide - Latest Food & Restaurant Information">
+    <meta property="og:description" content="Your complete guide to culinary highlights in South Jakarta">
+    <meta property="og:type" content="website">
+    
+    <title>South Jakarta Culinary Guide - Discover the Best Restaurants & Food Spots</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #d32f2f;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .auth-buttons a {
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            color: white;
+        }
+
+        .login-btn {
+            background-color: rgba(255,255,255,0.2);
+            border: 2px solid white;
+        }
+
+        .login-btn:hover {
+            background-color: rgba(255,255,255,0.3);
+        }
+
+        .register-btn {
+            background-color: white;
+            color: #d32f2f;
+            font-weight: bold;
+        }
+
+        .register-btn:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+            color: white;
+            padding: 4rem 20px;
+            text-align: center;
+        }
+
+        .hero .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        /* Search Bar */
+        .search-section {
+            background-color: white;
+            padding: 2rem 20px;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+        }
+
+        .search-section .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .search-section input,
+        .search-section select {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .search-section input:focus,
+        .search-section select:focus {
+            outline: none;
+            border-color: #d32f2f;
+            box-shadow: 0 0 5px rgba(211, 47, 47, 0.3);
+        }
+
+        .search-btn {
+            background-color: #d32f2f;
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            grid-column: 1 / -1;
+        }
+
+        .search-btn:hover {
+            background-color: #b71c1c;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Category Section */
+        .categories-section {
+            padding: 3rem 20px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-card h3 {
+            color: #d32f2f;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Featured Restaurants Section */
+        .featured-section {
+            padding: 3rem 20px;
+            background-color: white;
+            margin: 2rem 0;
+        }
+
+        .restaurants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .restaurant-card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .restaurant-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+
+        .restaurant-image {
+            width: 100%;
+            height: 200px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #999;
+        }
+
+        .restaurant-info {
+            padding: 1.5rem;
+        }
+
+        .restaurant-info h3 {
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .rating {
+            color: #ffc107;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .price-range {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .restaurant-details {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-small {
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: background-color 0.3s;
+            text-align: center;
+            flex: 1;
+        }
+
+        .btn-view {
+            background-color: #d32f2f;
+            color: white;
+        }
+
+        .btn-view:hover {
+            background-color: #b71c1c;
+        }
+
+        .btn-reserve {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .btn-reserve:hover {
+            background-color: #45a049;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 3rem 20px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-box {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #d32f2f;
+        }
+
+        .feature-box h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .feature-box p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* User Roles Section */
+        .roles-section {
+            padding: 3rem 20px;
+            background-color: #f8f9fa;
+        }
+
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .role-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid #d32f2f;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .role-card h3 {
+            color: #d32f2f;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .role-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .role-card li {
+            padding: 0.5rem 0;
+            color: #666;
+            border-bottom: 1px solid #eee;
+        }
+
+        .role-card li:last-child {
+            border-bottom: none;
+        }
+
+        .role-card li:before {
+            content: "✓ ";
+            color: #4CAF50;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 3rem 20px;
+            background-color: #333;
+            color: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-box h3 {
+            margin-bottom: 1rem;
+            color: #d32f2f;
+        }
+
+        .contact-box p {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-box a {
+            color: #d32f2f;
+            text-decoration: none;
+        }
+
+        .contact-box a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        footer a {
+            color: #d32f2f;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .search-section .container {
+                grid-template-columns: 1fr;
+            }
+
+            .search-btn {
+                grid-column: auto;
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            .restaurants-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .auth-buttons {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">🍽️ South Jakarta Culinary</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#restaurants">Restaurants</a></li>
+                <li><a href="#categories">Categories</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <a href="#login" class="login-btn">Login</a>
+                <a href="#register" class="register-btn">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Discover South Jakarta's Culinary Treasures</h1>
+            <p>Your Complete Guide to the Best Restaurants, Menus, Prices, and Culinary Experiences</p>
+        </div>
+    </section>
+
+    <!-- Search Bar -->
+    <section class="search-section">
+        <div class="container">
+            <input type="text" placeholder="Search restaurants or food types..." id="searchInput">
+            <select id="categoryFilter">
+                <option value="">All Categories</option>
+                <option value="indonesian">Indonesian Cuisine</option>
+                <option value="asian">Asian Cuisine</option>
+                <option value="western">Western Cuisine</option>
+                <option value="fusion">Fusion Cuisine</option>
+                <option value="desserts">Desserts & Cafe</option>
+            </select>
+            <select id="priceFilter">
+                <option value="">All Price Ranges</option>
+                <option value="budget">Budget (< Rp 50.000)</option>
+                <option value="moderate">Moderate (Rp 50.000 - 150.000)</option>
+                <option value="upscale">Upscale (> Rp 150.000)</option>
+            </select>
+            <button class="search-btn">Search Restaurants</button>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section" id="categories">
+        <div class="container">
+            <h2 class="section-title">Browse by Category</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">🍜</div>
+                    <h3>Indonesian Food</h3>
+                    <p>Traditional & modern Indonesian cuisine</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🍱</div>
+                    <h3>Asian Cuisine</h3>
+                    <p>Japanese, Chinese, Thai & more</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🍔</div>
+                    <h3>Western Food</h3>
+                    <p>American, European & International</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🥘</div>
+                    <h3>Fusion Cuisine</h3>
+                    <p>Creative culinary combinations</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">☕</div>
+                    <h3>Cafes & Desserts</h3>
+                    <p>Coffee, pastries & sweet treats</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🍲</div>
+                    <h3>Street Food</h3>
+                    <p>Local favorites & casual eats</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Restaurants Section -->
+    <section class="featured-section" id="restaurants">
+        <div class="container">
+            <h2 class="section-title">Featured Restaurants</h2>
+            <div class="restaurants-grid">
+                <!-- Restaurant Card 1 -->
+                <div class="restaurant-card">
+                    <div class="restaurant-image">🍽️</div>
+                    <div class="restaurant-info">
+                        <h3>Restaurant Name 1</h3>
+                        <div class="rating">★★★★★ (125 reviews)</div>
+                        <div class="price-range">Moderate (Rp 75.000 - 150.000)</div>
+                        <div class="restaurant-details">
+                            <strong>Cuisine:</strong> Indonesian<br>
+                            <strong>Location:</strong> South Jakarta<br>
+                            <strong>Hours:</strong> 10:00 - 23:00
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn-small btn-view">View Details</button>
+                            <button class="btn-small btn-reserve">Reserve</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Restaurant Card 2 -->
+                <div class="restaurant-card">
+                    <div class="restaurant-image">🍜</div>
+                    <div class="restaurant-info">
+                        <h3>Restaurant Name 2</h3>
+                        <div class="rating">★★★★☆ (98 reviews)</div>
+                        <div class="price-range">Budget (< Rp 50.000)</div>
+                        <div class="restaurant-details">
+                            <strong>Cuisine:</strong> Asian<br>
+                            <strong>Location:</strong> South Jakarta<br>
+                            <strong>Hours:</strong> 11:00 - 22:00
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn-small btn-view">View Details</button>
+                            <button class="btn-small btn-reserve">Reserve</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Restaurant Card 3 -->
+                <div class="restaurant-card">
+                    <div class="restaurant-image">🍔</div>
+                    <div class="restaurant-info">
+                        <h3>Restaurant Name 3</h3>
+                        <div class="rating">★★★★★ (156 reviews)</div>
+                        <div class="price-range">Upscale (> Rp 150.000)</div>
+                        <div class="restaurant-details">
+                            <strong>Cuisine:</strong> Western<br>
+                            <strong>Location:</strong> South Jakarta<br>
+                            <strong>Hours:</strong> 12:00 - 23:30
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn-small btn-view">View Details</button>
+                            <button class="btn-small btn-reserve">Reserve</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Restaurant Card 4 -->
+                <div class="restaurant-card">
+                    <div class="restaurant-image">☕</div>
+                    <div class="restaurant-info">
+                        <h3>Restaurant Name 4</h3>
+                        <div class="rating">★★★★☆ (87 reviews)</div>
+                        <div class="price-range">Budget (< Rp 50.000)</div>
+                        <div class="restaurant-details">
+                            <strong>Cuisine:</strong> Cafe & Desserts<br>
+                            <strong>Location:</strong> South Jakarta<br>
+                            <strong>Hours:</strong> 08:00 - 20:00
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn-small btn-view">View Details</button>
+                            <button class="btn-small btn-reserve">Reserve</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Restaurant Card 5 -->
+                <div class="restaurant-card">
+                    <div class="restaurant-image">🥘</div>
+                    <div class="restaurant-info">
+                        <h3>Restaurant Name 5</h3>
+                        <div class="rating">★★★★★ (142 reviews)</div>
+                        <div class="price-range">Moderate (Rp 75.000 - 150.000)</div>
+                        <div class="restaurant-details">
+                            <strong>Cuisine:</strong> Fusion<br>
+                            <strong>Location:</strong> South Jakarta<br>
+                            <strong>Hours:</strong> 17:00 - 23:00
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn-small btn-view">View Details</button>
+                            <button class="btn-small btn-reserve">Reserve</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Restaurant Card 6 -->
+                <div class="restaurant-card">
+                    <div class="restaurant-image">🍲</div>
+                    <div class="restaurant-info">
+                        <h3>Restaurant Name 6</h3>
+                        <div class="rating">★★★★☆ (104 reviews)</div>
+                        <div class="price-range">Budget (< Rp 50.000)</div>
+                        <div class="restaurant-details">
+                            <strong>Cuisine:</strong> Street Food<br>
+                            <strong>Location:</strong> South Jakarta<br>
+                            <strong>Hours:</strong> 10:00 - 21:00
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn-small btn-view">View Details</button>
+                            <button class="btn-small btn-reserve">Reserve</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">Why Choose Us?</h2>
+            <div class="features-grid">
+                <div class="feature-box">
+                    <div class="feature-icon">📋</div>
+                    <h3>Comprehensive Information</h3>
+                    <p>Complete details about menus, prices, locations, and facilities of all restaurants</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Easy Search & Discovery</h3>
+                    <p>Advanced search filters and categorized browsing for quick restaurant discovery</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon">⭐</div>
+                    <h3>Verified Ratings & Reviews</h3>
+                    <p>Honest ratings and detailed reviews from real customers who visited</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon">📱</div>
+                    <h3>Online Reservations</h3>
+                    <p>Book your table instantly without leaving the website</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon">🔐</div>
+                    <h3>Secure & Reliable</h3>
+                    <p>Safe data handling with regular backups and security monitoring</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon">📍</div>
+                    <h3>South Jakarta Focused</h3>
+                    <p>Exclusively featuring the best culinary destinations in South Jakarta</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Roles & Functionality Section -->
+    <section class="roles-section" id="about">
+        <div class="container">
+            <h2 class="section-title">Platform Capabilities by User Role</h2>
+            <div class="roles-grid">
+                <!-- User Role -->
+                <div class="role-card">
+                    <h3>👤 Regular Users</h3>
+                    <ul>
+                        <li>Search for culinary information</li>
+                        <li>Browse by category & location</li>
+                        <li>View detailed menus & pricing</li>
+                        <li>Check facilities & amenities</li>
+                        <li>Make online reservations</li>
+                        <li>Read reviews & ratings</li>
+                        <li>Submit ratings & reviews</li>
+                        <li>Save favorite restaurants</li>
+                    </ul>
+                </div>
+
+                <!-- Administrator Role -->
+                <div class="role-card">
+                    <h3>🔧 Administration</h3>
+                    <ul>
+                        <li>Overall website management</li>
+                        <li>Regular content updates</li>
+                        <li>Website security monitoring</li>
+                        <li>Data backup procedures</li>
+                        <li>Server performance monitoring</li>
+                        <li>User management & support</li>
+                        <li>SEO optimization</li>
+                        <li>Analytics & reporting</li>
+                    </ul>
+                </div>
+
+                <!-- Restaurant Owner Role -->
+                <div class="role-card">
+                    <h3>🏪 Restaurant Owners</h3>
+                    <ul>
+                        <li>Create & manage listings</li>
+                        <li>Upload menus & photos</li>
+                        <li>Update pricing information</li>
+                        <li>Manage reservations</li>
+                        <li>Update business hours</li>
+                        <li>Add facility details</li>
+                        <li>Respond to reviews</li>
+                        <li>View analytics & insights</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-box">
+                    <h3>📧 Email</h3>
+                    <p>For general inquiries:</p>
+                    <a href="mailto:info@southjakartaculinary.com">info@southjakartaculinary.com</a>
+                    <p style="margin-top: 1rem;">For restaurant partnerships:</p>
+                    <a href="mailto:partners@southjakartaculinary.com">partners@southjakartaculinary.com</a>
+                </div>
+                <div class="contact-box">
+                    <h3>📞 Phone</h3>
+                    <p>Customer Support</p>
+                    <a href="tel:+62-21-xxxx-xxxx">+62-21-XXXX-XXXX</a>
+                    <p style="margin-top: 1rem;">Available: Monday - Sunday, 09:00 - 18:00</p>
+                </div>
+                <div class="contact-box">
+                    <h3>📍 Address</h3>
+                    <p>South Jakarta, Indonesia</p>
+                    <p>Service Area: All South Jakarta Districts</p>
+                    <p>Follow us on social media for updates!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 South Jakarta Culinary Guide. All rights reserved.</p>
+            <p>
+                <a href="#privacy">Privacy Policy</a> | 
+                <a href="#terms">Terms of Service</a> | 
+                <a href="#sitemap">Sitemap</a>
+            </p>
+            <p>Helping you discover the best culinary experiences in South Jakarta</p>
+        </div>
+    </footer>
+
+    <script>
+        // Search functionality
+        document.querySelector('.search-btn').addEventListener('click', function() {
+            const searchInput = document.getElementById('searchInput').value;
+            const category = document.getElementById('categoryFilter').value;
+            const price = document.getElementById('priceFilter').value;
+            
+            console.log('Search Query:', searchInput);
+            console.log('Category:', category);
+            console.log('Price Range:', price);
+            
+            // TODO: Implement actual search functionality
+            alert('Search functionality will be implemented with backend integration');
+        });
+
+        // Category card click handlers
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const categoryName = this.querySelector('h3').textContent;
+                console.log('Selected category:', categoryName);
+                // TODO: Filter restaurants by selected category
+            });
+        });
+
+        // View Details button handlers
+        document.querySelectorAll('.btn-view').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const restaurantName = this.closest('.restaurant-card').querySelector('h3').textContent;
+                console.log('Viewing details for:', restaurantName);
+                // TODO: Navigate to detail page
+            });
+        });
+
+        // Reservation button handlers
+        document.querySelectorAll('.btn-reserve').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const restaurantName = this.closest('.restaurant-card').querySelector('h3').textContent;
+                console.log('Making reservation for:', restaurantName);
+                // TODO: Open reservation modal/form
+                alert('Reservation system coming soon!');
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#login' && href !== '#register' && href !== '#privacy' && href !== '#terms' && href !== '#sitemap') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
